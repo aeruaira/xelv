@@ -1,1 +1,474 @@
-# xelv
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Resmi Kelas Kita</title>
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- PALET WARNA (Cokelat Pramuka & Silver) --- */
+        :root {
+            --cokelat-tua: #4A2E1B;
+            --cokelat-medium: #633E26;
+            --silver-terang: #F5F5F5;
+            --silver-medium: #E0E0E0;
+            --silver-gelap: #9E9E9E;
+            --teks-gelap: #2C2C2C;
+            --putih: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--silver-terang);
+            color: var(--teks-gelap);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & NAVIGASI --- */
+        header {
+            background-color: var(--cokelat-tua);
+            color: var(--putih);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 5px solid var(--silver-medium);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--silver-medium);
+            font-style: italic;
+        }
+
+        nav {
+            background-color: var(--cokelat-medium);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            color: var(--silver-terang);
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--silver-medium);
+            color: var(--cokelat-tua);
+        }
+
+        /* --- KONTEN UTAMA --- */
+        container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: block;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- STYLE CARD & SECTIONS --- */
+        .card {
+            background: var(--putih);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--cokelat-tua);
+        }
+
+        h2 {
+            color: var(--cokelat-tua);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--silver-medium);
+            padding-bottom: 0.5rem;
+        }
+
+        /* --- STRUKTUR ORGANISASI --- */
+        .grid-org {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .member-card {
+            background: var(--silver-terang);
+            border: 1px solid var(--silver-medium);
+            border-radius: 8px;
+            text-align: center;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cokelat-tua);
+        }
+
+        .member-card i {
+            font-size: 3rem;
+            color: var(--cokelat-tua);
+            margin-bottom: 1rem;
+        }
+
+        /* --- JADWAL (TABLE) --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: var(--putih);
+        }
+
+        th, td {
+            border: 1px solid var(--silver-medium);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--cokelat-tua);
+            color: var(--putih);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--silver-terang);
+        }
+
+        /* --- GALERI FOTO --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: var(--putih);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--silver-medium);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-desc {
+            padding: 1rem;
+            background: var(--putih);
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* --- KONTAK & SOSMED --- */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            background: var(--cokelat-tua);
+            color: var(--putih);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--cokelat-medium);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--cokelat-tua);
+            color: var(--silver-terang);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            border-top: 5px solid var(--silver-medium);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE NAV FOR MOBILE */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li a {
+                text-align: center;
+                padding: 0.8rem;
+                border-bottom: 1px solid var(--cokelat-tua);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <!-- EDIT DI SINI: Nama Kelas & Slogan -->
+        <h1>XII IPS 2 - SCORPION</h1>
+        <p>Solidaritas Tinggi, Kreativitas Tanpa Batas. Bersama Menggapai Impian!</p>
+    </header>
+
+    <!-- NAVIGASI -->
+    <nav>
+        <ul>
+            <li><a onclick="switchPage('home')" id="nav-home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a onclick="switchPage('about')" id="nav-about"><i class="fas fa-users"></i> Tentang Kami</a></li>
+            <li><a onclick="switchPage('schedule')" id="nav-schedule"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a onclick="switchPage('gallery')" id="nav-gallery"><i class="fas fa-images"></i> Galeri</a></li>
+            <li><a onclick="switchPage('contact')" id="nav-contact"><i class="fas fa-envelope"></i> Hubungi</a></li>
+        </ul>
+    </nav>
+
+    <!-- KONTEN UTAMA -->
+    <container>
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="home" class="page active">
+            <div class="card">
+                <h2>Selamat Datang di Website Resmi Kelas Kami!</h2>
+                <p>Halo semuanya! Ini adalah ruang digital kreatif untuk kelas kita tercinta. Di sini, kita mendokumentasikan semua kenangan, jadwal, struktur kelas, dan segala aktivitas seru yang kita lalui bersama selama di sekolah.</p>
+                <br>
+                <p>Silakan jelajahi menu navigasi di atas untuk melihat informasi lebih lengkap tentang kami!</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-bullhorn" style="color: var(--cokelat-tua);"></i> Pengumuman Terbaru</h3>
+                <p style="margin-top: 0.5rem; padding: 0.5rem; background: var(--silver-terang); border-radius: 4px;">
+                    📌 <strong>20 Juni 2026:</strong> Jangan lupa iuran kas bulanan dikumpulkan paling lambat hari Jumat depan ke Bendahara!
+                </p>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2: ABOUT ================= -->
+        <div id="about" class="page">
+            <div class="card">
+                <h2>Profil Kelas</h2>
+                <p>Kami adalah keluarga besar yang terdiri dari siswa-siswi yang aktif, cerdas, dan siap mengarungi masa depan. Di bawah bimbingan wali kelas kami, kami berkomitmen untuk selalu menjaga kekompakan baik dalam bidang akademik maupun non-akademik.</p>
+            </div>
+
+            <div class="card">
+                <h2>Struktur Organisasi Kelas</h2>
+                <div class="grid-org">
+                    <!-- EDIT DI SINI: Nama Aparat Kelas -->
+                    <div class="member-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Pak Budi, S.Pd</h3>
+                        <p><strong>Wali Kelas</strong></p>
+                    </div>
+                    <div class="member-card">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Ahmad Rafli</h3>
+                        <p><strong>Ketua Kelas</strong></p>
+                    </div>
+                    <div class="member-card">
+                        <i class="fas fa-user-friends"></i>
+                        <h3>Siti Aminah</h3>
+                        <p><strong>Wakil Ketua</strong></p>
+                    </div>
+                    <div class="member-card">
+                        <i class="fas fa-pen-fancy"></i>
+                        <h3>Dinda Lestari</h3>
+                        <p><strong>Sekretaris</strong></p>
+                    </div>
+                    <div class="member-card">
+                        <i class="fas fa-wallet"></i>
+                        <h3>Rizky Fauzan</h3>
+                        <p><strong>Bendahara</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: SCHEDULE ================= -->
+        <div id="schedule" class="page">
+            <div class="card">
+                <h2>Jadwal Pelajaran Kelas</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Senin</th>
+                                <th>Selasa</th>
+                                <th>Rabu</th>
+                                <th>Kamis</th>
+                                <th>Jumat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- EDIT DI SINI: Jadwal Pelajaran -->
+                            <tr>
+                                <td>Matematika</td>
+                                <td>Bahasa Inggris</td>
+                                <td>Sejarah</td>
+                                <td>Geografi</td>
+                                <td>Agama</td>
+                            </tr>
+                            <tr>
+                                <td>Bahasa Indonesia</td>
+                                <td>Sosiologi</td>
+                                <td>Ekonomi</td>
+                                <td>Penjasorkes</td>
+                                <td>Seni Budaya</td>
+                            </tr>
+                            <tr>
+                                <td>Istirahat</td>
+                                <td>Istirahat</td>
+                                <td>Istirahat</td>
+                                <td>Istirahat</td>
+                                <td>Istirahat</td>
+                            </tr>
+                            <tr>
+                                <td>Sosiologi</td>
+                                <td>Ekonomi</td>
+                                <td>Geografi</td>
+                                <td>PKn</td>
+                                <td>Pramuka/Ekskul</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 4: GALLERY ================= -->
+        <div id="gallery" class="page">
+            <div class="card">
+                <h2>Galeri Foto Kegiatan</h2>
+                <p style="margin-bottom: 1.5rem;">Kumpulan momen manis dan kebersamaan yang tak terlupakan.</p>
+                
+                <div class="gallery-grid">
+                    <!-- EDIT DI SINI: Ganti src dengan link foto kalian -->
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 1">
+                        <div class="gallery-desc">Keseruan Waktu Classmeeting</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 2">
+                        <div class="gallery-desc">Momen Upacara Hari Pramuka</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 3">
+                        <div class="gallery-desc">Kunjungan Industri & Studi Banding</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 4">
+                        <div class="gallery-desc">Foto Bersama Wali Kelas Tercinta</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 5">
+                        <div class="gallery-desc">Kerja Bakti Membersihkan Kelas</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300" alt="Foto Kegiatan 6">
+                        <div class="gallery-desc">Perayaan Ulang Tahun Teman Sekelas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: CONTACT ================= -->
+        <div id="contact" class="page">
+            <div class="card" style="text-align: center;">
+                <h2>Hubungi & Ikuti Kami</h2>
+                <p>Punya pertanyaan seputar agenda kelas atau ingin berkolaborasi? Kunjungi akun sosial media resmi kelas kami di bawah ini:</p>
+                
+                <div class="social-links">
+                    <!-- EDIT DI SINI: Ganti tanda # dengan link sosmed kelas asli -->
+                    <a href="#" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i> TikTok</a>
+                    <a href="mailto:kelasmu@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email Kelas</a>
+                </div>
+            </div>
+        </div>
+
+    </container>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 XII IPS 2. Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk Kebersamaan Kita.</p>
+    </footer>
+
+    <!-- JAVASCRIPT UNTUK PINDAH HALAMAN -->
+    <script>
+        function switchPage(pageId) {
+            // Sembunyikan semua halaman
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Nonaktifkan semua link di nav
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Tampilkan halaman yang dipilih & beri efek aktif pada menu nav
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+
+            // Scroll otomatis ke atas konten saat ganti halaman
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
